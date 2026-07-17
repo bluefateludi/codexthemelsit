@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "id": "custom-violet-postal",
+  "name": "紫罗兰 · 邮政事务所",
+  "brandSubtitle": "CODEX DREAM SKIN",
+  "tagline": "让每一次编码，都像一封被认真书写的信。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "◉  选择项目",
+  "statusText": "DREAM SKIN ONLINE",
+  "quote": "MAKE SOMETHING WONDERFUL",
+  "image": "background.jpg",
+  "appearance": "light",
+  "art": {
+    "safeArea": "left",
+    "taskMode": "ambient",
+    "focusX": 0.82,
+    "focusY": 0.5
+  },
+  "copy": {
+    "eyebrow": "CH POSTAL COMPANY · WORKBENCH",
+    "title": "今天，要写下怎样的心意？",
+    "tagline": "让每一次编码，都像一封被认真书写的信。"
+  },
+  "decorations": {
+    "profile": "postal-balanced",
+    "assets": []
+  },
+  "motion": {
+    "profile": "expressive",
+    "homeIntensity": 1,
+    "taskIntensity": 0.25
+  }
+}

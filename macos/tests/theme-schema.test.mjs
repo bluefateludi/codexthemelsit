@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { normalizeThemeConfig } from "../scripts/theme-schema.mjs";
 
 const v1 = normalizeThemeConfig({
@@ -54,5 +55,42 @@ assert.throws(() => normalizeThemeConfig({
   image: "background.jpg",
   motion: { profile: "expressive", homeIntensity: 1.01, taskIntensity: 0.25 },
 }, { configPath: "fixture/theme.json" }), /motion\.homeIntensity/);
+
+const publicTemplatePath = new URL(
+  "../examples/violet-postal/theme.json",
+  import.meta.url,
+);
+const publicTemplateRaw = JSON.parse(readFileSync(publicTemplatePath, "utf8"));
+const publicTemplate = normalizeThemeConfig(publicTemplateRaw, {
+  configPath: "examples/violet-postal/theme.json",
+});
+assert.equal(publicTemplate.theme.id, "custom-violet-postal");
+assert.equal(publicTemplate.theme.image, "background.jpg");
+assert.equal(publicTemplate.theme.appearance, "light");
+assert.deepEqual(publicTemplate.theme.art, {
+  focusX: 0.82,
+  focusY: 0.5,
+  safeArea: "left",
+  taskMode: "ambient",
+});
+assert.equal(
+  publicTemplate.theme.copy.eyebrow,
+  "CH POSTAL COMPANY · WORKBENCH",
+);
+assert.equal(publicTemplate.theme.copy.title, "今天，要写下怎样的心意？");
+assert.equal(
+  publicTemplate.theme.copy.tagline,
+  "让每一次编码，都像一封被认真书写的信。",
+);
+assert.deepEqual(publicTemplate.theme.decorations, {
+  profile: "postal-balanced",
+  assets: [],
+});
+assert.deepEqual(publicTemplate.theme.motion, {
+  profile: "expressive",
+  homeIntensity: 1,
+  taskIntensity: 0.25,
+});
+assert.deepEqual(publicTemplate.assetNames, ["background.jpg"]);
 
 console.log("PASS: theme schema v1/v2 normalization and validation.");
